@@ -6,19 +6,11 @@ using System.Threading.Tasks;
 
 namespace Salon_Samochodowy_WF
 {
-    internal class Car: Vehicle 
+    internal class Car : Vehicle 
     {
-        public int EnginePower;
-        public string Color;
-        public int NrOfAxies;
-        public Car()
-        {
-            EngineeCapacity = 0;
-            EnginePower = 0;
-            Category = "osobowe";
-            Color = "Biały";
-            Weight = 0;
-            NrOfAxies = 0;
-        }
+        public int EnginePower { get; set; }
+        public string Color { get; set; }
+        public int NrOfAxies { get; set; }
+
     }
 }
