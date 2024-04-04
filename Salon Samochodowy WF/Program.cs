@@ -17,11 +17,13 @@ namespace Salon_Samochodowy_WF
         {
             
 
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Main());
+                Application.EnableVisualStyles();
+                Application.SetCompatibleTextRenderingDefault(false);
+                Application.Run(new Main());
 
-            
+           
+          
+           
         }
 
 
