@@ -15,18 +15,18 @@ namespace Salon_Samochodowy_WF
     {
            private List<Car> list = new List<Car>();
            private int rowIndex;
+           private int Index = 0;
         
         public Main()
         {
             InitializeComponent();
             dgvCars.DataSource = list;
-            
-            SetcolumnsHeader();
+            SetColumnsHeader();
         }
 
-        private void SetcolumnsHeader()
+        private void SetColumnsHeader()
         {
-            
+            dgvCars.Columns[nameof(Car.Id)].HeaderText = "ID";
             dgvCars.Columns[nameof(Car.Category)].HeaderText = "Kategoria";
             dgvCars.Columns[nameof(Car.Weight)].HeaderText = "Waga";
             dgvCars.Columns[nameof(Car.EngineeCapacity)].HeaderText = "Pojemność silnika";
@@ -40,9 +40,10 @@ namespace Salon_Samochodowy_WF
 
         private void RefreshList ()
         {
-            dgvCars.DataSource = null;
-            var cars = list;
-            dgvCars.DataSource = cars;
+            BindingSource source = new BindingSource();
+            source.DataSource = list;
+            dgvCars.DataSource = source;
+            SetColumnsHeader();
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -53,6 +54,7 @@ namespace Salon_Samochodowy_WF
                 if (btnAdd.Text == "Akceptuj")
                 {
                     Car selectedObject = list[rowIndex];
+                    selectedObject.Id = int.Parse(tbId.Text);
                     selectedObject.Color = tbColor.Text ;
                     selectedObject.Category = tbCategory.Text;
                     selectedObject.EngineeCapacity = int.Parse(tbEngineCapacity.Text);
@@ -69,6 +71,8 @@ namespace Salon_Samochodowy_WF
                 else
                 {
                     Car car = new Car();
+                    Index++;
+                    car.Id = Index;
                     car.Category = tbCategory.Text;
                     car.EngineeCapacity = int.Parse(tbEngineCapacity.Text);
                     car.EnginePower = int.Parse(tbEnginePower.Text);
@@ -76,6 +80,7 @@ namespace Salon_Samochodowy_WF
                     car.Weight = int.Parse(tbWeight.Text);
                     car.NrOfAxies = int.Parse(tbNrOfAxies.Text);
                     list.Add(car);
+
 
                     MessageBox.Show("Dodano nowy obiekt!", "Sukces", MessageBoxButtons.OK);
                     RefreshList();
@@ -91,6 +96,7 @@ namespace Salon_Samochodowy_WF
 
         private void ClearText()
         {
+            tbId.ResetText();
            tbCategory.ResetText();
             tbEngineCapacity.ResetText();
             tbEnginePower.ResetText();
@@ -103,12 +109,13 @@ namespace Salon_Samochodowy_WF
         {
             if(dgvCars.SelectedRows.Count > 0)
             {
-                    int rowIndex = dgvCars.SelectedRows.Count-1;    
+                    rowIndex = dgvCars.CurrentCell.RowIndex;    
                     Car selectedObject = list[rowIndex];
 
                 
                     list.Remove(selectedObject);
                 MessageBox.Show("pojazd został usunięty");
+                Index--;
                RefreshList();
                 
             }    
@@ -117,13 +124,22 @@ namespace Salon_Samochodowy_WF
                 MessageBox.Show("zaznacz pojazd który chcesz usunąć");
             }
         }
+        private void show()
+        {
+            List<int> CarID = new List<int>();
+            foreach(Car car in list)
+            {
+                CarID.Add(car.Id); 
+            }
+        }
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
             if(dgvCars.SelectedRows.Count > 0)
             {
-                rowIndex = dgvCars.SelectedRows.Count-1;
+                rowIndex = dgvCars.CurrentCell.RowIndex;
                 Car selectedObject = list[rowIndex];
+                tbId.Text = selectedObject.Id.ToString();
                 tbColor.Text = selectedObject.Color;
                 tbCategory.Text = selectedObject.Category;
                 tbEngineCapacity.Text = selectedObject.EngineeCapacity.ToString();
@@ -140,14 +156,13 @@ namespace Salon_Samochodowy_WF
             }
         }
 
-        private void dgvCars_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
 
-        }
 
         private void toolTip1_Popup(object sender, PopupEventArgs e)
         {
             MessageBox.Show("niestety nie wiem dlaczego jest problem z Index out of range przy zaznaczaniu:(");
         }
+
+
     }
 }

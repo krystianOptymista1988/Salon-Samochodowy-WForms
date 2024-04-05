@@ -50,6 +50,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.dgvCars = new System.Windows.Forms.DataGridView();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.tbId = new System.Windows.Forms.TextBox();
+            this.lbID = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCars)).BeginInit();
             this.SuspendLayout();
             // 
@@ -165,7 +167,7 @@
             // 
             this.btnEdit.BackColor = System.Drawing.Color.DarkGoldenrod;
             this.btnEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.btnEdit.Location = new System.Drawing.Point(514, 228);
+            this.btnEdit.Location = new System.Drawing.Point(502, 230);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(135, 40);
             this.btnEdit.TabIndex = 14;
@@ -177,7 +179,7 @@
             // 
             this.btnDelete.BackColor = System.Drawing.Color.Firebrick;
             this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.btnDelete.Location = new System.Drawing.Point(815, 228);
+            this.btnDelete.Location = new System.Drawing.Point(791, 228);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(135, 40);
             this.btnDelete.TabIndex = 15;
@@ -205,17 +207,44 @@
             // 
             // dgvCars
             // 
+            this.dgvCars.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvCars.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvCars.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvCars.Location = new System.Drawing.Point(107, 312);
+            this.dgvCars.Location = new System.Drawing.Point(124, 297);
+            this.dgvCars.MaximumSize = new System.Drawing.Size(889, 542);
+            this.dgvCars.MinimumSize = new System.Drawing.Size(889, 542);
             this.dgvCars.Name = "dgvCars";
+            this.dgvCars.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            this.dgvCars.RowHeadersVisible = false;
             this.dgvCars.RowHeadersWidth = 62;
+            this.dgvCars.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dgvCars.RowTemplate.Height = 28;
-            this.dgvCars.Size = new System.Drawing.Size(939, 510);
+            this.dgvCars.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvCars.Size = new System.Drawing.Size(889, 542);
             this.dgvCars.TabIndex = 20;
             // 
             // toolTip1
             // 
             this.toolTip1.Popup += new System.Windows.Forms.PopupEventHandler(this.toolTip1_Popup);
+            // 
+            // tbId
+            // 
+            this.tbId.Location = new System.Drawing.Point(71, 63);
+            this.tbId.Name = "tbId";
+            this.tbId.ReadOnly = true;
+            this.tbId.Size = new System.Drawing.Size(101, 26);
+            this.tbId.TabIndex = 21;
+            // 
+            // lbID
+            // 
+            this.lbID.AutoSize = true;
+            this.lbID.Location = new System.Drawing.Point(30, 63);
+            this.lbID.Name = "lbID";
+            this.lbID.Size = new System.Drawing.Size(23, 20);
+            this.lbID.TabIndex = 22;
+            this.lbID.Text = "Id";
             // 
             // Main
             // 
@@ -223,6 +252,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLight;
             this.ClientSize = new System.Drawing.Size(1102, 879);
+            this.Controls.Add(this.lbID);
+            this.Controls.Add(this.tbId);
             this.Controls.Add(this.dgvCars);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
@@ -272,6 +303,8 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DataGridView dgvCars;
         private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.TextBox tbId;
+        private System.Windows.Forms.Label lbID;
     }
 }
 
