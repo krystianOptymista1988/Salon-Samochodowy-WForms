@@ -7,10 +7,12 @@ using System.Threading.Tasks;
 
 namespace Salon_Samochodowy_WF
 {
-    internal class Vehicle
+    interface IVehicle
     {
-        public string Category { get; set; }
-        public int Weight { get; set; }
-        public int EngineeCapacity { get; set; }
+        string Model { get; set; }
+        int CarMileage { get; set; }
+        string Category { get; set; }
+        double Weight { get; set; }
+        double EngineeCapacity { get; set; }
     }
 }

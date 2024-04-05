@@ -13,7 +13,8 @@ namespace Salon_Samochodowy_WF
 {
     public partial class Main : Form
     {
-           private List<Car> list = new List<Car>();
+    
+        private List<Car> list = new List<Car>();
            private int rowIndex;
            private int Index = 0;
         
@@ -23,6 +24,7 @@ namespace Salon_Samochodowy_WF
             dgvCars.DataSource = list;
             SetColumnsHeader();
         }
+       
 
         private void SetColumnsHeader()
         {
@@ -33,7 +35,16 @@ namespace Salon_Samochodowy_WF
             dgvCars.Columns[nameof(Car.EnginePower)].HeaderText = "Moc silnika";
             dgvCars.Columns[nameof(Car.Color)].HeaderText = "Kolor";
             dgvCars.Columns[nameof(Car.NrOfAxies)].HeaderText = "Ilość Osi";
+            dgvCars.Columns[nameof(Car.Model)].HeaderText = "Model";
+            dgvCars.Columns[nameof(Car.CarMileage)].HeaderText = "Przebieg";
+            dgvCars.Columns[nameof(Car.VinNumber)].HeaderText = "Nr. Vin";
+            dgvCars.Columns[nameof(Car.DateOfBuy)].HeaderText = "Data zakupu";
+            dgvCars.Columns[nameof(Car.DateOfSell)].HeaderText = "Data sprzedaży";
+            dgvCars.Columns[nameof(Car.NoRegistration)].HeaderText = "Nr. Rejestracyjny";
+            dgvCars.Columns[nameof(Car.PriceOfSell)].HeaderText = "Cena";
+            //dgvCars.Columns[nameof(Car.PriceOfSell)]
 
+           
         }
 
 
@@ -61,12 +72,18 @@ namespace Salon_Samochodowy_WF
                     selectedObject.EnginePower = int.Parse(tbEnginePower.Text);
                     selectedObject.Weight = int.Parse(tbWeight.Text);
                     selectedObject.NrOfAxies = int.Parse(tbNrOfAxies.Text); 
+                    selectedObject.NoRegistration = tbNoRegistration.Text;
+                    selectedObject.CarMileage = int.Parse(tbCarMileage.Text);
+                    selectedObject.VinNumber = tbVinNumber.Text;
+                    selectedObject.PriceOfSell = int.Parse(tbPriceOfSell.Text);
+                    selectedObject.Model = tbModel.Text;
 
+                    
                     btnAdd.Text = "Dodaj";
                     btnAdd.BackColor = Color.ForestGreen;
                     RefreshList();
                     ClearText();
-                    
+                 
                 }
                 else
                 {
@@ -79,17 +96,24 @@ namespace Salon_Samochodowy_WF
                     car.Color = tbColor.Text;
                     car.Weight = int.Parse(tbWeight.Text);
                     car.NrOfAxies = int.Parse(tbNrOfAxies.Text);
+                    car.DateOfBuy = DateTime.Now;
+                    car.NoRegistration = tbNoRegistration.Text;
+                    car.VinNumber = tbVinNumber.Text;
+                    car.CarMileage = int.Parse(tbCarMileage.Text);
+                    car.PriceOfSell = int.Parse(tbPriceOfSell.Text);
+                    car.Model = tbModel.Text;
                     list.Add(car);
-
+                  
 
                     MessageBox.Show("Dodano nowy obiekt!", "Sukces", MessageBoxButtons.OK);
                     RefreshList();
                     ClearText();
+
                 }
             }
             catch (Exception ex) 
             {
-                MessageBox.Show("Coś poszło nie tak :( wprowadź dane jeszcze raz" );
+                MessageBox.Show("Coś poszło nie tak :( wprowadź dane jeszcze raz" + ex );
             }
 
         }
@@ -103,6 +127,11 @@ namespace Salon_Samochodowy_WF
             tbNrOfAxies.ResetText();
             tbColor.ResetText();
             tbWeight.ResetText();
+            tbModel.ResetText();
+            tbNoRegistration.ResetText();
+            tbPriceOfSell.ResetText();
+            tbVinNumber.ResetText();
+            tbCarMileage.ResetText();
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -124,21 +153,19 @@ namespace Salon_Samochodowy_WF
                 MessageBox.Show("zaznacz pojazd który chcesz usunąć");
             }
         }
-        private void show()
-        {
-            List<int> CarID = new List<int>();
-            foreach(Car car in list)
-            {
-                CarID.Add(car.Id); 
-            }
-        }
+
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            if(dgvCars.SelectedRows.Count > 0)
-            {
                 rowIndex = dgvCars.CurrentCell.RowIndex;
                 Car selectedObject = list[rowIndex];
+            if(selectedObject.DateOfSell != null)
+            {
+                MessageBox.Show("Nie możesz edytować sprzedanego samochodu !");
+                return;
+            }
+            if(dgvCars.SelectedRows.Count > 0)
+            {
                 tbId.Text = selectedObject.Id.ToString();
                 tbColor.Text = selectedObject.Color;
                 tbCategory.Text = selectedObject.Category;
@@ -146,6 +173,11 @@ namespace Salon_Samochodowy_WF
                 tbEnginePower.Text = selectedObject.EnginePower.ToString();
                 tbWeight.Text = selectedObject.Weight.ToString();
                 tbNrOfAxies.Text = selectedObject.NrOfAxies.ToString();
+                tbCarMileage.Text = selectedObject.CarMileage.ToString();
+                tbModel.Text = selectedObject.Model;
+                tbNoRegistration.Text = selectedObject.NoRegistration;
+                tbPriceOfSell.Text = selectedObject.PriceOfSell.ToString();
+                tbVinNumber.Text = selectedObject.VinNumber;
 
                 btnAdd.Text = "Akceptuj";
                 btnAdd.BackColor = Color.Lime;
@@ -163,6 +195,19 @@ namespace Salon_Samochodowy_WF
             MessageBox.Show("niestety nie wiem dlaczego jest problem z Index out of range przy zaznaczaniu:(");
         }
 
-
+        private void btSell_Click(object sender, EventArgs e)
+        {
+            if (dgvCars.SelectedRows.Count > 0)
+            {
+                rowIndex = dgvCars.CurrentCell.RowIndex;
+                Car selectedObject = list[rowIndex];
+                selectedObject.DateOfSell = DateTime.Now;
+                RefreshList();
+            }
+            else
+            {
+                MessageBox.Show("zaznacz obiekt, który chcesz sprzedać");
+            }
+        }
     }
 }

@@ -46,25 +46,34 @@
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.dgvCars = new System.Windows.Forms.DataGridView();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.tbId = new System.Windows.Forms.TextBox();
             this.lbID = new System.Windows.Forms.Label();
+            this.lbModel = new System.Windows.Forms.Label();
+            this.lbVinNumber = new System.Windows.Forms.Label();
+            this.tbModel = new System.Windows.Forms.TextBox();
+            this.tbVinNumber = new System.Windows.Forms.TextBox();
+            this.btSell = new System.Windows.Forms.Button();
+            this.lbNoRegistration = new System.Windows.Forms.Label();
+            this.tbNoRegistration = new System.Windows.Forms.TextBox();
+            this.lbCarMileage = new System.Windows.Forms.Label();
+            this.tbCarMileage = new System.Windows.Forms.TextBox();
+            this.tbPriceOfSell = new System.Windows.Forms.TextBox();
+            this.lbPriceOfSell = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCars)).BeginInit();
             this.SuspendLayout();
             // 
             // tbCategory
             // 
-            this.tbCategory.Location = new System.Drawing.Point(304, 63);
+            this.tbCategory.Location = new System.Drawing.Point(304, 75);
             this.tbCategory.Name = "tbCategory";
             this.tbCategory.Size = new System.Drawing.Size(223, 26);
             this.tbCategory.TabIndex = 0;
             // 
             // tbWeight
             // 
-            this.tbWeight.Location = new System.Drawing.Point(304, 115);
+            this.tbWeight.Location = new System.Drawing.Point(304, 124);
             this.tbWeight.Name = "tbWeight";
             this.tbWeight.Size = new System.Drawing.Size(223, 26);
             this.tbWeight.TabIndex = 1;
@@ -78,14 +87,14 @@
             // 
             // tbEnginePower
             // 
-            this.tbEnginePower.Location = new System.Drawing.Point(690, 63);
+            this.tbEnginePower.Location = new System.Drawing.Point(690, 75);
             this.tbEnginePower.Name = "tbEnginePower";
             this.tbEnginePower.Size = new System.Drawing.Size(223, 26);
             this.tbEnginePower.TabIndex = 3;
             // 
             // tbColor
             // 
-            this.tbColor.Location = new System.Drawing.Point(690, 115);
+            this.tbColor.Location = new System.Drawing.Point(690, 124);
             this.tbColor.Name = "tbColor";
             this.tbColor.Size = new System.Drawing.Size(223, 26);
             this.tbColor.TabIndex = 4;
@@ -100,7 +109,7 @@
             // lbCategory
             // 
             this.lbCategory.AutoSize = true;
-            this.lbCategory.Location = new System.Drawing.Point(205, 66);
+            this.lbCategory.Location = new System.Drawing.Point(210, 78);
             this.lbCategory.Name = "lbCategory";
             this.lbCategory.Size = new System.Drawing.Size(77, 20);
             this.lbCategory.TabIndex = 6;
@@ -109,7 +118,7 @@
             // lbWeight
             // 
             this.lbWeight.AutoSize = true;
-            this.lbWeight.Location = new System.Drawing.Point(187, 115);
+            this.lbWeight.Location = new System.Drawing.Point(187, 127);
             this.lbWeight.Name = "lbWeight";
             this.lbWeight.Size = new System.Drawing.Size(111, 20);
             this.lbWeight.TabIndex = 7;
@@ -127,7 +136,7 @@
             // lbEnginePower
             // 
             this.lbEnginePower.AutoSize = true;
-            this.lbEnginePower.Location = new System.Drawing.Point(592, 69);
+            this.lbEnginePower.Location = new System.Drawing.Point(586, 78);
             this.lbEnginePower.Name = "lbEnginePower";
             this.lbEnginePower.Size = new System.Drawing.Size(92, 20);
             this.lbEnginePower.TabIndex = 9;
@@ -136,7 +145,7 @@
             // lbColor
             // 
             this.lbColor.AutoSize = true;
-            this.lbColor.Location = new System.Drawing.Point(633, 121);
+            this.lbColor.Location = new System.Drawing.Point(623, 127);
             this.lbColor.Name = "lbColor";
             this.lbColor.Size = new System.Drawing.Size(45, 20);
             this.lbColor.TabIndex = 10;
@@ -167,7 +176,7 @@
             // 
             this.btnEdit.BackColor = System.Drawing.Color.DarkGoldenrod;
             this.btnEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.btnEdit.Location = new System.Drawing.Point(502, 230);
+            this.btnEdit.Location = new System.Drawing.Point(553, 228);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(135, 40);
             this.btnEdit.TabIndex = 14;
@@ -179,31 +188,13 @@
             // 
             this.btnDelete.BackColor = System.Drawing.Color.Firebrick;
             this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.btnDelete.Location = new System.Drawing.Point(791, 228);
+            this.btnDelete.Location = new System.Drawing.Point(863, 228);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(135, 40);
             this.btnDelete.TabIndex = 15;
             this.btnDelete.Text = "Usuń";
             this.btnDelete.UseVisualStyleBackColor = false;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(356, 26);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(104, 20);
-            this.label1.TabIndex = 17;
-            this.label1.Text = "Klasa Vehicle";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(769, 26);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(77, 20);
-            this.label3.TabIndex = 19;
-            this.label3.Text = "Klasa Car";
             // 
             // dgvCars
             // 
@@ -212,8 +203,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvCars.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvCars.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvCars.Location = new System.Drawing.Point(124, 297);
-            this.dgvCars.MaximumSize = new System.Drawing.Size(889, 542);
+            this.dgvCars.Location = new System.Drawing.Point(140, 274);
             this.dgvCars.MinimumSize = new System.Drawing.Size(889, 542);
             this.dgvCars.Name = "dgvCars";
             this.dgvCars.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
@@ -222,7 +212,7 @@
             this.dgvCars.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dgvCars.RowTemplate.Height = 28;
             this.dgvCars.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvCars.Size = new System.Drawing.Size(889, 542);
+            this.dgvCars.Size = new System.Drawing.Size(1242, 542);
             this.dgvCars.TabIndex = 20;
             // 
             // toolTip1
@@ -246,17 +236,118 @@
             this.lbID.TabIndex = 22;
             this.lbID.Text = "Id";
             // 
+            // lbModel
+            // 
+            this.lbModel.AutoSize = true;
+            this.lbModel.Location = new System.Drawing.Point(221, 36);
+            this.lbModel.Name = "lbModel";
+            this.lbModel.Size = new System.Drawing.Size(52, 20);
+            this.lbModel.TabIndex = 23;
+            this.lbModel.Text = "Model";
+            // 
+            // lbVinNumber
+            // 
+            this.lbVinNumber.AutoSize = true;
+            this.lbVinNumber.Location = new System.Drawing.Point(611, 36);
+            this.lbVinNumber.Name = "lbVinNumber";
+            this.lbVinNumber.Size = new System.Drawing.Size(56, 20);
+            this.lbVinNumber.TabIndex = 24;
+            this.lbVinNumber.Text = "Nr. Vin";
+            // 
+            // tbModel
+            // 
+            this.tbModel.Location = new System.Drawing.Point(304, 33);
+            this.tbModel.Name = "tbModel";
+            this.tbModel.Size = new System.Drawing.Size(223, 26);
+            this.tbModel.TabIndex = 25;
+            // 
+            // tbVinNumber
+            // 
+            this.tbVinNumber.Location = new System.Drawing.Point(690, 30);
+            this.tbVinNumber.Name = "tbVinNumber";
+            this.tbVinNumber.Size = new System.Drawing.Size(223, 26);
+            this.tbVinNumber.TabIndex = 26;
+            // 
+            // btSell
+            // 
+            this.btSell.BackColor = System.Drawing.Color.DeepSkyBlue;
+            this.btSell.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.btSell.Location = new System.Drawing.Point(1139, 178);
+            this.btSell.Name = "btSell";
+            this.btSell.Size = new System.Drawing.Size(174, 90);
+            this.btSell.TabIndex = 27;
+            this.btSell.Text = "Sprzedaj";
+            this.btSell.UseVisualStyleBackColor = false;
+            this.btSell.Click += new System.EventHandler(this.btSell_Click);
+            // 
+            // lbNoRegistration
+            // 
+            this.lbNoRegistration.AutoSize = true;
+            this.lbNoRegistration.Location = new System.Drawing.Point(968, 33);
+            this.lbNoRegistration.Name = "lbNoRegistration";
+            this.lbNoRegistration.Size = new System.Drawing.Size(127, 20);
+            this.lbNoRegistration.TabIndex = 28;
+            this.lbNoRegistration.Text = "Nr. Rejestracyjny";
+            // 
+            // tbNoRegistration
+            // 
+            this.tbNoRegistration.Location = new System.Drawing.Point(1101, 30);
+            this.tbNoRegistration.Name = "tbNoRegistration";
+            this.tbNoRegistration.Size = new System.Drawing.Size(223, 26);
+            this.tbNoRegistration.TabIndex = 29;
+            // 
+            // lbCarMileage
+            // 
+            this.lbCarMileage.AutoSize = true;
+            this.lbCarMileage.Location = new System.Drawing.Point(1024, 75);
+            this.lbCarMileage.Name = "lbCarMileage";
+            this.lbCarMileage.Size = new System.Drawing.Size(71, 20);
+            this.lbCarMileage.TabIndex = 30;
+            this.lbCarMileage.Text = "Przebieg";
+            // 
+            // tbCarMileage
+            // 
+            this.tbCarMileage.Location = new System.Drawing.Point(1101, 72);
+            this.tbCarMileage.Name = "tbCarMileage";
+            this.tbCarMileage.Size = new System.Drawing.Size(223, 26);
+            this.tbCarMileage.TabIndex = 31;
+            // 
+            // tbPriceOfSell
+            // 
+            this.tbPriceOfSell.Location = new System.Drawing.Point(1101, 124);
+            this.tbPriceOfSell.Name = "tbPriceOfSell";
+            this.tbPriceOfSell.Size = new System.Drawing.Size(223, 26);
+            this.tbPriceOfSell.TabIndex = 32;
+            // 
+            // lbPriceOfSell
+            // 
+            this.lbPriceOfSell.AutoSize = true;
+            this.lbPriceOfSell.Location = new System.Drawing.Point(968, 127);
+            this.lbPriceOfSell.Name = "lbPriceOfSell";
+            this.lbPriceOfSell.Size = new System.Drawing.Size(126, 20);
+            this.lbPriceOfSell.TabIndex = 34;
+            this.lbPriceOfSell.Text = "Cena Sprzedaży";
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.ClientSize = new System.Drawing.Size(1102, 879);
+            this.ClientSize = new System.Drawing.Size(1465, 879);
+            this.Controls.Add(this.lbPriceOfSell);
+            this.Controls.Add(this.tbPriceOfSell);
+            this.Controls.Add(this.tbCarMileage);
+            this.Controls.Add(this.lbCarMileage);
+            this.Controls.Add(this.tbNoRegistration);
+            this.Controls.Add(this.lbNoRegistration);
+            this.Controls.Add(this.btSell);
+            this.Controls.Add(this.tbVinNumber);
+            this.Controls.Add(this.tbModel);
+            this.Controls.Add(this.lbVinNumber);
+            this.Controls.Add(this.lbModel);
             this.Controls.Add(this.lbID);
             this.Controls.Add(this.tbId);
             this.Controls.Add(this.dgvCars);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.btnAdd);
@@ -299,12 +390,21 @@
         private System.Windows.Forms.Button btnEdit;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.ColorDialog colorDialog1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DataGridView dgvCars;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.TextBox tbId;
         private System.Windows.Forms.Label lbID;
+        private System.Windows.Forms.Label lbModel;
+        private System.Windows.Forms.Label lbVinNumber;
+        private System.Windows.Forms.TextBox tbModel;
+        private System.Windows.Forms.TextBox tbVinNumber;
+        private System.Windows.Forms.Button btSell;
+        private System.Windows.Forms.Label lbNoRegistration;
+        private System.Windows.Forms.TextBox tbNoRegistration;
+        private System.Windows.Forms.Label lbCarMileage;
+        private System.Windows.Forms.TextBox tbCarMileage;
+        private System.Windows.Forms.TextBox tbPriceOfSell;
+        private System.Windows.Forms.Label lbPriceOfSell;
     }
 }
 
