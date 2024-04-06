@@ -61,7 +61,7 @@
             this.lbPriceOfSell = new System.Windows.Forms.Label();
             this.lbSellValue = new System.Windows.Forms.Label();
             this.lbSellValueView = new System.Windows.Forms.Label();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.chbNotSelled = new System.Windows.Forms.CheckBox();
             this.tbModel = new System.Windows.Forms.TextBox();
             this.cbCategory = new System.Windows.Forms.ComboBox();
             this.lbSort = new System.Windows.Forms.Label();
@@ -336,16 +336,16 @@
             this.lbSellValueView.TabIndex = 36;
             this.lbSellValueView.Text = "0,00 zł";
             // 
-            // checkBox1
+            // chbNotSelled
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(378, 259);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(256, 24);
-            this.checkBox1.TabIndex = 37;
-            this.checkBox1.Text = "Pokazuj tylko dostępne pojazdy";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            this.chbNotSelled.AutoSize = true;
+            this.chbNotSelled.Location = new System.Drawing.Point(378, 259);
+            this.chbNotSelled.Name = "chbNotSelled";
+            this.chbNotSelled.Size = new System.Drawing.Size(256, 24);
+            this.chbNotSelled.TabIndex = 37;
+            this.chbNotSelled.Text = "Pokazuj tylko dostępne pojazdy";
+            this.chbNotSelled.UseVisualStyleBackColor = true;
+            this.chbNotSelled.CheckedChanged += new System.EventHandler(this.chbNotSelled_CheckedChanged);
             // 
             // tbModel
             // 
@@ -389,7 +389,7 @@
             this.Controls.Add(this.cbSort);
             this.Controls.Add(this.lbSort);
             this.Controls.Add(this.cbCategory);
-            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.chbNotSelled);
             this.Controls.Add(this.lbSellValueView);
             this.Controls.Add(this.lbSellValue);
             this.Controls.Add(this.lbPriceOfSell);
@@ -461,7 +461,7 @@
         private System.Windows.Forms.Label lbPriceOfSell;
         private System.Windows.Forms.Label lbSellValue;
         private System.Windows.Forms.Label lbSellValueView;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox chbNotSelled;
         private System.Windows.Forms.TextBox tbModel;
         private System.Windows.Forms.ComboBox cbCategory;
         private System.Windows.Forms.Label lbSort;

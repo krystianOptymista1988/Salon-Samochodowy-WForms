@@ -279,9 +279,9 @@ namespace Salon_Samochodowy_WF
             }
         }
 
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        private void chbNotSelled_CheckedChanged(object sender, EventArgs e)
         {
-            if (checkBox1.Checked)
+            if (chbNotSelled.Checked)
             {
                 sortedList = list.Where(x => x.DateOfSell == null).ToList();
                 dgvCars.DataSource = sortedList;
