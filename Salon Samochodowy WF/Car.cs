@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Salon_Samochodowy_WF
 {
-    internal class Car : TransactionData, IVehicle
+    public class Car : TransactionData, IVehicle
     {
-        public int Id { get; set; }
+        public int? Id { get; set; }
         public string Model {  get; set; }
         public string Category { get; set; }
         public double EngineeCapacity { get; set; }    
@@ -21,7 +21,7 @@ namespace Salon_Samochodowy_WF
         public string VinNumber { get; set; }
         public string NoRegistration { get; set; }
         public DateTime DateOfBuy { get; set; }
-        public int PriceOfSell { get;set; }
+        public double PriceOfSell { get;set; }
         public DateTime? DateOfSell { get; set;}
 
     }

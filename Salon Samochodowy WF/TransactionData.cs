@@ -12,6 +12,6 @@ namespace Salon_Samochodowy_WF
       DateTime? DateOfSell { get; set; }   
       String VinNumber { get; set; }
       String NoRegistration { get; set; }
-      int PriceOfSell { get; set; }
+      double PriceOfSell { get; set; }
     }
 }

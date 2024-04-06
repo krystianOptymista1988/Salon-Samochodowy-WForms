@@ -30,7 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
-            this.tbCategory = new System.Windows.Forms.TextBox();
             this.tbWeight = new System.Windows.Forms.TextBox();
             this.tbEngineCapacity = new System.Windows.Forms.TextBox();
             this.tbEnginePower = new System.Windows.Forms.TextBox();
@@ -52,7 +51,6 @@
             this.lbID = new System.Windows.Forms.Label();
             this.lbModel = new System.Windows.Forms.Label();
             this.lbVinNumber = new System.Windows.Forms.Label();
-            this.tbModel = new System.Windows.Forms.TextBox();
             this.tbVinNumber = new System.Windows.Forms.TextBox();
             this.btSell = new System.Windows.Forms.Button();
             this.lbNoRegistration = new System.Windows.Forms.Label();
@@ -61,15 +59,15 @@
             this.tbCarMileage = new System.Windows.Forms.TextBox();
             this.tbPriceOfSell = new System.Windows.Forms.TextBox();
             this.lbPriceOfSell = new System.Windows.Forms.Label();
+            this.lbSellValue = new System.Windows.Forms.Label();
+            this.lbSellValueView = new System.Windows.Forms.Label();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.tbModel = new System.Windows.Forms.TextBox();
+            this.cbCategory = new System.Windows.Forms.ComboBox();
+            this.lbSort = new System.Windows.Forms.Label();
+            this.cbSort = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCars)).BeginInit();
             this.SuspendLayout();
-            // 
-            // tbCategory
-            // 
-            this.tbCategory.Location = new System.Drawing.Point(304, 75);
-            this.tbCategory.Name = "tbCategory";
-            this.tbCategory.Size = new System.Drawing.Size(223, 26);
-            this.tbCategory.TabIndex = 0;
             // 
             // tbWeight
             // 
@@ -164,7 +162,7 @@
             // 
             this.btnAdd.BackColor = System.Drawing.Color.ForestGreen;
             this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.btnAdd.Location = new System.Drawing.Point(191, 228);
+            this.btnAdd.Location = new System.Drawing.Point(660, 248);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(135, 40);
             this.btnAdd.TabIndex = 13;
@@ -176,7 +174,7 @@
             // 
             this.btnEdit.BackColor = System.Drawing.Color.DarkGoldenrod;
             this.btnEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.btnEdit.Location = new System.Drawing.Point(553, 228);
+            this.btnEdit.Location = new System.Drawing.Point(844, 248);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(135, 40);
             this.btnEdit.TabIndex = 14;
@@ -188,7 +186,7 @@
             // 
             this.btnDelete.BackColor = System.Drawing.Color.Firebrick;
             this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.btnDelete.Location = new System.Drawing.Point(863, 228);
+            this.btnDelete.Location = new System.Drawing.Point(1012, 248);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(135, 40);
             this.btnDelete.TabIndex = 15;
@@ -203,7 +201,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvCars.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvCars.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvCars.Location = new System.Drawing.Point(140, 274);
+            this.dgvCars.Location = new System.Drawing.Point(60, 303);
             this.dgvCars.MinimumSize = new System.Drawing.Size(889, 542);
             this.dgvCars.Name = "dgvCars";
             this.dgvCars.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
@@ -212,12 +210,8 @@
             this.dgvCars.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dgvCars.RowTemplate.Height = 28;
             this.dgvCars.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvCars.Size = new System.Drawing.Size(1242, 542);
+            this.dgvCars.Size = new System.Drawing.Size(1350, 542);
             this.dgvCars.TabIndex = 20;
-            // 
-            // toolTip1
-            // 
-            this.toolTip1.Popup += new System.Windows.Forms.PopupEventHandler(this.toolTip1_Popup);
             // 
             // tbId
             // 
@@ -254,13 +248,6 @@
             this.lbVinNumber.TabIndex = 24;
             this.lbVinNumber.Text = "Nr. Vin";
             // 
-            // tbModel
-            // 
-            this.tbModel.Location = new System.Drawing.Point(304, 33);
-            this.tbModel.Name = "tbModel";
-            this.tbModel.Size = new System.Drawing.Size(223, 26);
-            this.tbModel.TabIndex = 25;
-            // 
             // tbVinNumber
             // 
             this.tbVinNumber.Location = new System.Drawing.Point(690, 30);
@@ -272,9 +259,9 @@
             // 
             this.btSell.BackColor = System.Drawing.Color.DeepSkyBlue;
             this.btSell.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.btSell.Location = new System.Drawing.Point(1139, 178);
+            this.btSell.Location = new System.Drawing.Point(1173, 227);
             this.btSell.Name = "btSell";
-            this.btSell.Size = new System.Drawing.Size(174, 90);
+            this.btSell.Size = new System.Drawing.Size(237, 61);
             this.btSell.TabIndex = 27;
             this.btSell.Text = "Sprzedaj";
             this.btSell.UseVisualStyleBackColor = false;
@@ -328,12 +315,83 @@
             this.lbPriceOfSell.TabIndex = 34;
             this.lbPriceOfSell.Text = "Cena Sprzedaży";
             // 
+            // lbSellValue
+            // 
+            this.lbSellValue.AutoSize = true;
+            this.lbSellValue.ForeColor = System.Drawing.Color.DarkRed;
+            this.lbSellValue.Location = new System.Drawing.Point(965, 178);
+            this.lbSellValue.Name = "lbSellValue";
+            this.lbSellValue.Size = new System.Drawing.Size(270, 20);
+            this.lbSellValue.TabIndex = 35;
+            this.lbSellValue.Text = "Wartość Sprzedanych Samochodów:";
+            // 
+            // lbSellValueView
+            // 
+            this.lbSellValueView.AutoSize = true;
+            this.lbSellValueView.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.lbSellValueView.ForeColor = System.Drawing.Color.DarkRed;
+            this.lbSellValueView.Location = new System.Drawing.Point(1241, 178);
+            this.lbSellValueView.Name = "lbSellValueView";
+            this.lbSellValueView.Size = new System.Drawing.Size(69, 22);
+            this.lbSellValueView.TabIndex = 36;
+            this.lbSellValueView.Text = "0,00 zł";
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(378, 259);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(256, 24);
+            this.checkBox1.TabIndex = 37;
+            this.checkBox1.Text = "Pokazuj tylko dostępne pojazdy";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
+            // tbModel
+            // 
+            this.tbModel.Location = new System.Drawing.Point(304, 33);
+            this.tbModel.Name = "tbModel";
+            this.tbModel.Size = new System.Drawing.Size(223, 26);
+            this.tbModel.TabIndex = 25;
+            // 
+            // cbCategory
+            // 
+            this.cbCategory.FormattingEnabled = true;
+            this.cbCategory.Location = new System.Drawing.Point(304, 78);
+            this.cbCategory.Name = "cbCategory";
+            this.cbCategory.Size = new System.Drawing.Size(223, 28);
+            this.cbCategory.TabIndex = 38;
+            // 
+            // lbSort
+            // 
+            this.lbSort.AutoSize = true;
+            this.lbSort.Location = new System.Drawing.Point(67, 260);
+            this.lbSort.Name = "lbSort";
+            this.lbSort.Size = new System.Drawing.Size(51, 20);
+            this.lbSort.TabIndex = 39;
+            this.lbSort.Text = "Sortuj";
+            // 
+            // cbSort
+            // 
+            this.cbSort.FormattingEnabled = true;
+            this.cbSort.Location = new System.Drawing.Point(124, 257);
+            this.cbSort.Name = "cbSort";
+            this.cbSort.Size = new System.Drawing.Size(223, 28);
+            this.cbSort.TabIndex = 40;
+            this.cbSort.SelectedValueChanged += new System.EventHandler(this.cbSort_SelectedValueChanged);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLight;
             this.ClientSize = new System.Drawing.Size(1465, 879);
+            this.Controls.Add(this.cbSort);
+            this.Controls.Add(this.lbSort);
+            this.Controls.Add(this.cbCategory);
+            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.lbSellValueView);
+            this.Controls.Add(this.lbSellValue);
             this.Controls.Add(this.lbPriceOfSell);
             this.Controls.Add(this.tbPriceOfSell);
             this.Controls.Add(this.tbCarMileage);
@@ -362,7 +420,6 @@
             this.Controls.Add(this.tbEnginePower);
             this.Controls.Add(this.tbEngineCapacity);
             this.Controls.Add(this.tbWeight);
-            this.Controls.Add(this.tbCategory);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Main";
             this.Text = "Salon Samochodowy";
@@ -373,8 +430,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox tbCategory;
         private System.Windows.Forms.TextBox tbWeight;
         private System.Windows.Forms.TextBox tbEngineCapacity;
         private System.Windows.Forms.TextBox tbEnginePower;
@@ -396,7 +451,6 @@
         private System.Windows.Forms.Label lbID;
         private System.Windows.Forms.Label lbModel;
         private System.Windows.Forms.Label lbVinNumber;
-        private System.Windows.Forms.TextBox tbModel;
         private System.Windows.Forms.TextBox tbVinNumber;
         private System.Windows.Forms.Button btSell;
         private System.Windows.Forms.Label lbNoRegistration;
@@ -405,6 +459,13 @@
         private System.Windows.Forms.TextBox tbCarMileage;
         private System.Windows.Forms.TextBox tbPriceOfSell;
         private System.Windows.Forms.Label lbPriceOfSell;
+        private System.Windows.Forms.Label lbSellValue;
+        private System.Windows.Forms.Label lbSellValueView;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.TextBox tbModel;
+        private System.Windows.Forms.ComboBox cbCategory;
+        private System.Windows.Forms.Label lbSort;
+        private System.Windows.Forms.ComboBox cbSort;
     }
 }
 

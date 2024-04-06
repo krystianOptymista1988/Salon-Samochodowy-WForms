@@ -8,11 +8,15 @@ namespace Salon_Samochodowy_WF
 {
     enum Category
     {
+        Wszystkie,
         Sedan,
         Kombi,
-        Bus,
+        Heatchback,
+        SUV,
         Van,
+        Dostawcze,
         Ciężarowe,
-        Inne,
+        Bus,
+        
     }
 }
