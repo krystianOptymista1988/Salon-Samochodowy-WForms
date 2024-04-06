@@ -12,23 +12,25 @@ using System.IO;
 using System.Xml.Serialization;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
+
 namespace Salon_Samochodowy_WF
 {
     public partial class Main : Form
     {
 
-        private List<Car> list = new List<Car>();
+        public static List<Car> list = new List<Car>();
         private List<Category> categories = new List<Category>();
         public List<Car> sortedList;
         private int rowIndex;
-        private int? index;
-        private double sellValue = 0.00;
-        private string _filePath = $@"{Path.GetDirectoryName(Application.ExecutablePath)}\Cars.txt";
+        public static int? index;
+        public double sellValue = 0.00;
+        
 
         public Main()
         {
             InitializeComponent();
-            DeserializeFromFile();
+            list = FileHelper.DeserializeFromFile();
+            index = FileHelper.FirstCheck();
             dgvCars.DataSource = list;
             FindIndex();
             SellValueCheck();
@@ -67,35 +69,6 @@ namespace Salon_Samochodowy_WF
             }
         }
 
-        private void SerializeToFile(List<Car> list)
-        {
-                var serializer = new XmlSerializer(typeof(List<Car>));
-            using (var streamWriter = new StreamWriter(_filePath))
-            {
-                serializer.Serialize(streamWriter, list);
-                streamWriter.Close();
-            }     
-        }
-        private List<Car> DeserializeFromFile()
-        {
-            if (!File.Exists(_filePath))
-            {
-                list = new List<Car>();
-                index= 0;
-                MessageBox.Show("Twoja lista jest na razie pusta :)");
-                return list;
-            }
-
-            var serializer = new XmlSerializer(typeof(List<Car>));
-            using (var streamReader = new StreamReader(_filePath))
-            {
-                list = (List<Car>)serializer.Deserialize(streamReader);
-                streamReader.Close();
-                return list;
-
-            }
-        }
-
         private void SetColumnsHeader()
         {
             if (list != null)
@@ -119,7 +92,7 @@ namespace Salon_Samochodowy_WF
 
         private void RefreshList()
         {
-            list = DeserializeFromFile();
+            list = FileHelper.DeserializeFromFile();
             BindingSource source = new BindingSource();
             source.DataSource = list;
             dgvCars.DataSource = source;
@@ -130,7 +103,7 @@ namespace Salon_Samochodowy_WF
         {
             try
             {
-                    DeserializeFromFile();
+                    FileHelper.DeserializeFromFile();
 
                 if (btnAdd.Text == "Akceptuj")
                 {
@@ -188,7 +161,7 @@ namespace Salon_Samochodowy_WF
                     MessageBox.Show("Dodano nowy obiekt!", "Sukces", MessageBoxButtons.OK);
 
                 }
-                    SerializeToFile(list);
+                    FileHelper.SerializeToFile(list);
                     RefreshList();
                     ClearText();
             }
@@ -229,7 +202,7 @@ namespace Salon_Samochodowy_WF
             if (dgvCars.SelectedRows.Count > 0)
             {
                 list.Remove(selectedObject);
-                SerializeToFile(list);
+                FileHelper.SerializeToFile(list);
                 MessageBox.Show("pojazd został usunięty");
                 RefreshList();
 
@@ -282,7 +255,7 @@ namespace Salon_Samochodowy_WF
                 selectedObject.DateOfSell = DateTime.Now;
                 sellValue += selectedObject.PriceOfSell;
                 lbSellValueView.Text = sellValue.ToString() + " zł";
-                SerializeToFile(list);
+                FileHelper.SerializeToFile(list);
                 RefreshList();
             }
             else
