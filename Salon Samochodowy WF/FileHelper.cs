@@ -13,12 +13,21 @@ namespace Salon_Samochodowy_WF
     public class FileHelper
     {
         public static string _filePath = $@"{Path.GetDirectoryName(Application.ExecutablePath)}\Cars.txt";
-        
+        public static string _carsPath = $@"{Path.GetDirectoryName(Application.ExecutablePath)}\Cars\";
+
+        public static void FolderCheck()
+        {
+         if (!Directory.Exists(FileHelper._carsPath))
+            {
+                Directory.CreateDirectory(FileHelper._carsPath);
+            }
+        }
         public static int? FirstCheck()
         {
             int? index = 0;
             if (!File.Exists(_filePath))
                 return index;
+           
             else
             {
                 var list = DeserializeFromFile();
@@ -55,6 +64,7 @@ namespace Salon_Samochodowy_WF
             {
                 serializer.Serialize(streamWriter, list);
                 streamWriter.Close();
+
             }
         }
     }

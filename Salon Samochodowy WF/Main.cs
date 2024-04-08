@@ -24,7 +24,7 @@ namespace Salon_Samochodowy_WF
         private int rowIndex;
         public static int? index;
         public double sellValue = 0.00;
-        
+        private string selectedFile;
 
         public Main()
         {
@@ -33,6 +33,7 @@ namespace Salon_Samochodowy_WF
             index = FileHelper.FirstCheck();
             dgvCars.DataSource = list;
             FindIndex();
+            FileHelper.FolderCheck();
             SellValueCheck();
             InitGroupCombobox();
             SetColumnsHeader();
@@ -87,6 +88,7 @@ namespace Salon_Samochodowy_WF
                 dgvCars.Columns[nameof(Car.DateOfSell)].HeaderText = "Data sprzedaży";
                 dgvCars.Columns[nameof(Car.NoRegistration)].HeaderText = "Nr. Rejestracyjny";
                 dgvCars.Columns[nameof(Car.PriceOfSell)].HeaderText = "Cena";
+                dgvCars.Columns[nameof(Car.Picturelocalization)].HeaderText = "Lokalizacja zdjęcia";
             }
         }
 
@@ -156,6 +158,7 @@ namespace Salon_Samochodowy_WF
                     car.CarMileage = int.Parse(tbCarMileage.Text);
                     car.PriceOfSell = double.Parse(tbPriceOfSell.Text);
                     car.Model = tbModel.Text;
+                    car.Picturelocalization = "";
                     list.Add(car);
 
                     MessageBox.Show("Dodano nowy obiekt!", "Sukces", MessageBoxButtons.OK);
@@ -287,6 +290,106 @@ namespace Salon_Samochodowy_WF
                 dgvCars.DataSource = sortedList;
             }   
             else { dgvCars.DataSource =  list;}
+        }
+
+        private void btAddPhoto_Click(object sender, EventArgs e)
+        {
+
+            if (dgvCars.SelectedRows.Count > 0)
+            {
+                rowIndex = dgvCars.CurrentCell.RowIndex;
+                Car selectedObject = list[rowIndex];
+                if (selectedObject.Picturelocalization == "")
+                {
+                    using (OpenFileDialog openFileDialog = new OpenFileDialog())
+                    {
+                        if (openFileDialog.ShowDialog() == DialogResult.OK)
+                        {
+                            openFileDialog.InitialDirectory = "C:\\";
+                            openFileDialog.Filter = "Pliki obrazów|*.jpg;*";
+                            selectedObject.Picturelocalization = $"{FileHelper._carsPath}\\{selectedObject.Id}.jpg";
+                     
+                            try
+                            {
+                                File.Copy(openFileDialog.FileName, $"{FileHelper._carsPath}\\{selectedObject.Id}.jpg", true);
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show($"COŚ POSZŁO NIE TAK !!! sprawdź uprawnienia programu" + ex);
+                            }
+
+                            FileHelper.SerializeToFile(list);
+                            RefreshList();
+                            MessageBox.Show("Plik został dodany pomyślnie");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Coś poszło nie tak, spróbuj jeszcze raz!");
+                        }
+                    }
+                }
+
+                else
+                {
+                   
+                    MessageBox.Show("Czy chcesz zamienić istniejące zdjęcie ?", "Uwaga", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (DialogResult == DialogResult.Yes)
+                    {
+                        using (OpenFileDialog openFileDialog = new OpenFileDialog())
+                        {
+                            if (openFileDialog.ShowDialog() == DialogResult.OK)
+                            {
+                                openFileDialog.InitialDirectory = "C:\\";
+                                openFileDialog.Filter = "Pliki obrazów|*.jpg;*";
+                                selectedObject.Picturelocalization = $"{FileHelper._carsPath}\\{selectedObject.Id}.jpg";
+
+                                try
+                                {
+                                    File.Copy(openFileDialog.FileName, $"{FileHelper._carsPath}\\{selectedObject.Id}.jpg", true);
+                                }
+                                catch (Exception ex)
+                                {
+                                    MessageBox.Show($"COŚ POSZŁO NIE TAK !!! sprawdź uprawnienia programu" + ex);
+                                }
+
+                                FileHelper.SerializeToFile(list);
+                                RefreshList();
+                                MessageBox.Show("Plik został dodany pomyślnie");
+                            }
+                            else
+                            {
+                                MessageBox.Show("Coś poszło nie tak, spróbuj jeszcze raz!");
+                            }
+                        }
+                    }
+                    else
+                    {
+                        RefreshList();
+                       
+
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("zaznacz obiekt, który chcesz edytować");
+            }
+
+        }
+
+        private void btShowPicture_Click(object sender, EventArgs e)
+        {
+            if (dgvCars.SelectedRows.Count > 0)
+            {
+                rowIndex = dgvCars.CurrentCell.RowIndex;
+                Car selectedObject = list[rowIndex];
+                PictureView pictureView = new PictureView(selectedObject.Picturelocalization);
+                pictureView.Show();
+            }
+            else
+            {
+                MessageBox.Show("zaznacz obiekt, który chcesz przeglądać");
+            }
         }
     }
 

@@ -23,6 +23,8 @@ namespace Salon_Samochodowy_WF
         public DateTime DateOfBuy { get; set; }
         public double PriceOfSell { get;set; }
         public DateTime? DateOfSell { get; set;}
+        public string Picturelocalization { get; set; }
+
 
     }
 }

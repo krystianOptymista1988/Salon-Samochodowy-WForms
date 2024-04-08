@@ -66,6 +66,9 @@
             this.cbCategory = new System.Windows.Forms.ComboBox();
             this.lbSort = new System.Windows.Forms.Label();
             this.cbSort = new System.Windows.Forms.ComboBox();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.btAddPhoto = new System.Windows.Forms.Button();
+            this.btShowPicture = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCars)).BeginInit();
             this.SuspendLayout();
             // 
@@ -174,7 +177,7 @@
             // 
             this.btnEdit.BackColor = System.Drawing.Color.DarkGoldenrod;
             this.btnEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.btnEdit.Location = new System.Drawing.Point(844, 248);
+            this.btnEdit.Location = new System.Drawing.Point(854, 248);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(135, 40);
             this.btnEdit.TabIndex = 14;
@@ -186,7 +189,7 @@
             // 
             this.btnDelete.BackColor = System.Drawing.Color.Firebrick;
             this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.btnDelete.Location = new System.Drawing.Point(1012, 248);
+            this.btnDelete.Location = new System.Drawing.Point(1044, 248);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(135, 40);
             this.btnDelete.TabIndex = 15;
@@ -210,7 +213,7 @@
             this.dgvCars.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dgvCars.RowTemplate.Height = 28;
             this.dgvCars.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvCars.Size = new System.Drawing.Size(1350, 542);
+            this.dgvCars.Size = new System.Drawing.Size(1408, 542);
             this.dgvCars.TabIndex = 20;
             // 
             // tbId
@@ -259,7 +262,7 @@
             // 
             this.btSell.BackColor = System.Drawing.Color.DeepSkyBlue;
             this.btSell.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.btSell.Location = new System.Drawing.Point(1173, 227);
+            this.btSell.Location = new System.Drawing.Point(1231, 227);
             this.btSell.Name = "btSell";
             this.btSell.Size = new System.Drawing.Size(237, 61);
             this.btSell.TabIndex = 27;
@@ -380,12 +383,40 @@
             this.cbSort.TabIndex = 40;
             this.cbSort.SelectedValueChanged += new System.EventHandler(this.cbSort_SelectedValueChanged);
             // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // btAddPhoto
+            // 
+            this.btAddPhoto.BackColor = System.Drawing.Color.MediumSlateBlue;
+            this.btAddPhoto.Location = new System.Drawing.Point(1369, 29);
+            this.btAddPhoto.Name = "btAddPhoto";
+            this.btAddPhoto.Size = new System.Drawing.Size(142, 69);
+            this.btAddPhoto.TabIndex = 41;
+            this.btAddPhoto.Text = "Dodaj zdjęcie";
+            this.btAddPhoto.UseVisualStyleBackColor = false;
+            this.btAddPhoto.Click += new System.EventHandler(this.btAddPhoto_Click);
+            // 
+            // btShowPicture
+            // 
+            this.btShowPicture.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.btShowPicture.Location = new System.Drawing.Point(1369, 124);
+            this.btShowPicture.Name = "btShowPicture";
+            this.btShowPicture.Size = new System.Drawing.Size(142, 69);
+            this.btShowPicture.TabIndex = 42;
+            this.btShowPicture.Text = "Pokaż zdjęcie";
+            this.btShowPicture.UseVisualStyleBackColor = false;
+            this.btShowPicture.Click += new System.EventHandler(this.btShowPicture_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.ClientSize = new System.Drawing.Size(1465, 879);
+            this.ClientSize = new System.Drawing.Size(1523, 879);
+            this.Controls.Add(this.btShowPicture);
+            this.Controls.Add(this.btAddPhoto);
             this.Controls.Add(this.cbSort);
             this.Controls.Add(this.lbSort);
             this.Controls.Add(this.cbCategory);
@@ -466,6 +497,9 @@
         private System.Windows.Forms.ComboBox cbCategory;
         private System.Windows.Forms.Label lbSort;
         private System.Windows.Forms.ComboBox cbSort;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.Button btAddPhoto;
+        private System.Windows.Forms.Button btShowPicture;
     }
 }
 
