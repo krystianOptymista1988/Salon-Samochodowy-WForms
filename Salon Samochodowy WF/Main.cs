@@ -11,6 +11,11 @@ using System.Windows.Forms;
 using System.IO;
 using System.Xml.Serialization;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using static System.Net.WebRequestMethods;
+using System.Net.NetworkInformation;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
+using System.Drawing.Imaging;
+using File = System.IO.File;
 
 
 namespace Salon_Samochodowy_WF
@@ -25,6 +30,7 @@ namespace Salon_Samochodowy_WF
         public static int? index;
         public double sellValue = 0.00;
         private string selectedFile;
+        public string fileName;
 
         public Main()
         {
@@ -42,13 +48,12 @@ namespace Salon_Samochodowy_WF
 
         private void FindIndex()
         {
-                if (index == 0)
-                    index = 0;
-                else index = list.OrderByDescending(x => x.Id).FirstOrDefault().Id;
+            if (index != 0)
+               index = list.OrderByDescending(x => x.Id).FirstOrDefault().Id;
         }
         private void InitGroupCombobox()
         {
-            
+
             Category[] enumValues = (Category[])Enum.GetValues(typeof(Category));
             List<Category> categories = enumValues.ToList();
             List<Category> categories1 = categories.ToList();
@@ -60,13 +65,13 @@ namespace Salon_Samochodowy_WF
 
         private void SellValueCheck()
         {
-            if(list != null) 
-            { 
-            foreach(Car car in list)
+            if (list != null)
             {
-                if(car.DateOfSell != null)
-                sellValue += car.PriceOfSell;
-            }
+                foreach (Car car in list)
+                {
+                    if (car.DateOfSell != null)
+                        sellValue += car.PriceOfSell;
+                }
             }
         }
 
@@ -88,11 +93,11 @@ namespace Salon_Samochodowy_WF
                 dgvCars.Columns[nameof(Car.DateOfSell)].HeaderText = "Data sprzedaży";
                 dgvCars.Columns[nameof(Car.NoRegistration)].HeaderText = "Nr. Rejestracyjny";
                 dgvCars.Columns[nameof(Car.PriceOfSell)].HeaderText = "Cena";
-                dgvCars.Columns[nameof(Car.Picturelocalization)].HeaderText = "Lokalizacja zdjęcia";
+                dgvCars.Columns[nameof(Car.Picturelocalization)].HeaderText = "ścieżka pliku";
             }
         }
 
-        private void RefreshList()
+        public void RefreshList()
         {
             list = FileHelper.DeserializeFromFile();
             BindingSource source = new BindingSource();
@@ -105,11 +110,11 @@ namespace Salon_Samochodowy_WF
         {
             try
             {
-                    FileHelper.DeserializeFromFile();
+                list = FileHelper.DeserializeFromFile();
 
                 if (btnAdd.Text == "Akceptuj")
                 {
-                    
+
                     if (cbCategory.SelectedItem.ToString() == "Wszystkie")
                     {
                         MessageBox.Show("ustaw odpowiednią kategorię");
@@ -127,19 +132,19 @@ namespace Salon_Samochodowy_WF
                     selectedObject.VinNumber = tbVinNumber.Text;
                     selectedObject.PriceOfSell = double.Parse(tbPriceOfSell.Text);
                     selectedObject.Model = tbModel.Text;
-                    
+
                     btnAdd.Text = "Dodaj";
                     btnAdd.BackColor = Color.ForestGreen;
-                   
+
                 }
                 else
                 {
 
                     FindIndex();
-                  
+
                     index++;
-                    
-                    if (cbCategory.SelectedItem.ToString() == "Wszystkie") 
+
+                    if (cbCategory.SelectedItem.ToString() == "Wszystkie")
                     {
                         MessageBox.Show("ustaw odpowiednią kategorię");
                         return;
@@ -164,9 +169,9 @@ namespace Salon_Samochodowy_WF
                     MessageBox.Show("Dodano nowy obiekt!", "Sukces", MessageBoxButtons.OK);
 
                 }
-                    FileHelper.SerializeToFile(list);
-                    RefreshList();
-                    ClearText();
+                FileHelper.SerializeToFile(list);
+                RefreshList();
+                ClearText();
             }
             catch (Exception ex)
             {
@@ -270,15 +275,15 @@ namespace Salon_Samochodowy_WF
         private void cbSort_SelectedValueChanged(object sender, EventArgs e)
         {
             var selectedCategory = cbSort.SelectedItem.ToString();
-            if (selectedCategory != "Wszystkie") 
+            if (selectedCategory != "Wszystkie")
             {
                 sortedList = list.Where(x => x.Category == selectedCategory).ToList();
                 dgvCars.DataSource = sortedList;
-                
+
             }
             else
             {
-                dgvCars.DataSource= list;
+                dgvCars.DataSource = list;
             }
         }
 
@@ -288,8 +293,8 @@ namespace Salon_Samochodowy_WF
             {
                 sortedList = list.Where(x => x.DateOfSell == null).ToList();
                 dgvCars.DataSource = sortedList;
-            }   
-            else { dgvCars.DataSource =  list;}
+            }
+            else { dgvCars.DataSource = list; }
         }
 
         private void btAddPhoto_Click(object sender, EventArgs e)
@@ -301,81 +306,20 @@ namespace Salon_Samochodowy_WF
                 Car selectedObject = list[rowIndex];
                 if (selectedObject.Picturelocalization == "")
                 {
-                    using (OpenFileDialog openFileDialog = new OpenFileDialog())
-                    {
-                        if (openFileDialog.ShowDialog() == DialogResult.OK)
-                        {
-                            openFileDialog.InitialDirectory = "C:\\";
-                            openFileDialog.Filter = "Pliki obrazów|*.jpg;*";
-                            selectedObject.Picturelocalization = $"{FileHelper._carsPath}\\{selectedObject.Id}.jpg";
-                     
-                            try
-                            {
-                                File.Copy(openFileDialog.FileName, $"{FileHelper._carsPath}\\{selectedObject.Id}.jpg", true);
-                            }
-                            catch (Exception ex)
-                            {
-                                MessageBox.Show($"COŚ POSZŁO NIE TAK !!! sprawdź uprawnienia programu" + ex);
-                            }
-
-                            FileHelper.SerializeToFile(list);
-                            RefreshList();
-                            MessageBox.Show("Plik został dodany pomyślnie");
-                        }
-                        else
-                        {
-                            MessageBox.Show("Coś poszło nie tak, spróbuj jeszcze raz!");
-                        }
-                    }
+                    FileHelper.FileAdding(selectedObject);
                 }
-
+                DialogResult result = MessageBox.Show("zdjęcie już istnieje, czy chcesz je zamienić ?", "UWAGA !", MessageBoxButtons.OKCancel);
+                if (result == DialogResult.OK)
+                {
+                    FileHelper.FileAdding(selectedObject);
+                }
                 else
                 {
-                   
-                    MessageBox.Show("Czy chcesz zamienić istniejące zdjęcie ?", "Uwaga", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (DialogResult == DialogResult.Yes)
-                    {
-                        using (OpenFileDialog openFileDialog = new OpenFileDialog())
-                        {
-                            if (openFileDialog.ShowDialog() == DialogResult.OK)
-                            {
-                                openFileDialog.InitialDirectory = "C:\\";
-                                openFileDialog.Filter = "Pliki obrazów|*.jpg;*";
-                                selectedObject.Picturelocalization = $"{FileHelper._carsPath}\\{selectedObject.Id}.jpg";
-
-                                try
-                                {
-                                    File.Copy(openFileDialog.FileName, $"{FileHelper._carsPath}\\{selectedObject.Id}.jpg", true);
-                                }
-                                catch (Exception ex)
-                                {
-                                    MessageBox.Show($"COŚ POSZŁO NIE TAK !!! sprawdź uprawnienia programu" + ex);
-                                }
-
-                                FileHelper.SerializeToFile(list);
-                                RefreshList();
-                                MessageBox.Show("Plik został dodany pomyślnie");
-                            }
-                            else
-                            {
-                                MessageBox.Show("Coś poszło nie tak, spróbuj jeszcze raz!");
-                            }
-                        }
-                    }
-                    else
-                    {
-                        RefreshList();
-                       
-
-                    }
+                    MessageBox.Show("zaznacz obiekt, którego zdjęcie chcesz edytować");
                 }
             }
-            else
-            {
-                MessageBox.Show("zaznacz obiekt, który chcesz edytować");
-            }
-
         }
+
 
         private void btShowPicture_Click(object sender, EventArgs e)
         {
@@ -393,4 +337,4 @@ namespace Salon_Samochodowy_WF
         }
     }
 
-}
+} 

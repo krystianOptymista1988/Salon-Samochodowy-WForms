@@ -34,9 +34,10 @@
             // 
             // pbCar
             // 
-            this.pbCar.Location = new System.Drawing.Point(13, 13);
+            this.pbCar.Location = new System.Drawing.Point(3, -1);
             this.pbCar.Name = "pbCar";
-            this.pbCar.Size = new System.Drawing.Size(775, 425);
+            this.pbCar.Size = new System.Drawing.Size(1544, 998);
+            this.pbCar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pbCar.TabIndex = 0;
             this.pbCar.TabStop = false;
             // 
@@ -44,12 +45,14 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.AutoSize = true;
+            this.ClientSize = new System.Drawing.Size(1559, 1037);
             this.Controls.Add(this.pbCar);
             this.Name = "PictureView";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.pbCar)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 

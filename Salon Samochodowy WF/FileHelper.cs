@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -20,6 +21,38 @@ namespace Salon_Samochodowy_WF
          if (!Directory.Exists(FileHelper._carsPath))
             {
                 Directory.CreateDirectory(FileHelper._carsPath);
+            }
+        }
+        public static void FileAdding(Car selectedObject)
+        {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    openFileDialog.InitialDirectory = "C:\\";
+                    var imageExtensions = string.Join(";", ImageCodecInfo.GetImageDecoders().Select(ici => ici.FilenameExtension));
+                    openFileDialog.Filter = string.Format("Images|{0}|All Files|*.*", imageExtensions);
+                    var fileName = openFileDialog.FileName;
+                    try
+                    {
+                        var fileCheck = $@"{FileHelper._carsPath}\{selectedObject.Id}.jpg";
+                        if (File.Exists(fileCheck))
+                         File.Delete(fileCheck); 
+
+                        File.Copy(fileName, $@"{FileHelper._carsPath}\{selectedObject.Id}.jpg");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"COŚ POSZŁO NIE TAK !!! sprawdź uprawnienia programu" + ex);
+                    }
+                    selectedObject.Picturelocalization = $@"{FileHelper._carsPath}\{selectedObject.Id}.jpg";
+                    FileHelper.SerializeToFile(Main.list);
+                    MessageBox.Show("Plik został dodany pomyślnie");
+                }
+                else
+                {
+                    MessageBox.Show("Coś poszło nie tak, spróbuj jeszcze raz!");
+                }
             }
         }
         public static int? FirstCheck()
